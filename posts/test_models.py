@@ -10,8 +10,7 @@ class  ModelTestCase(TestCase):
         self.body = 'my example post'
         self.posts = baker.make("posts.Post", _quantity=8)
         self.test_post = self.posts[1]
-        self.test_post.liked.add(self.user)
-
+        self.test_post.toggle_like(self.user)
 
     def test_model_user_can_create_a_post(self):
         """Test the single model can create a transaction."""
@@ -25,16 +24,16 @@ class  ModelTestCase(TestCase):
         """Test that a user can like a post."""
         post = self.posts[0]
         old_count = post.liked.count()
-        post.liked.add(self.user)
+        post.toggle_like(self.user)
         new_count = post.liked.count()
         self.assertNotEqual(old_count, new_count)
         self.assertTrue(self.user in post.liked.all())
 
     def test_model_user_can_unlike_post(self):
-        """Test that a user can like a post."""
+        """Test that a user can unlike a post."""
         post = self.test_post
         old_count = post.liked.count()
-        post.liked.remove(self.user)
+        post.toggle_like(self.user)
         new_count = post.liked.count()
         self.assertNotEqual(old_count, new_count)
         self.assertFalse(self.user in post.liked.all())
