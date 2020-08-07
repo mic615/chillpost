@@ -14,11 +14,11 @@ class  APITestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='test', email='test@gmail.com', password='top_secret')
         self.client = APIClient()
-        self.valid_payload = {
+        self.valid_post_payload = {
             'body': 'test',
             'owner': self.user.id
         }
-        self.invalid_payload = {
+        self.invalid_post_payload = {
             'body': 'test'
         }
 
@@ -26,7 +26,7 @@ class  APITestCase(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('post-list'),
-            data=json.dumps(self.valid_payload),
+            data=json.dumps(self.valid_post_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -35,7 +35,7 @@ class  APITestCase(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.post(
             reverse('post-list'),
-            data=json.dumps(self.invalid_payload),
+            data=json.dumps(self.invalid_post_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
