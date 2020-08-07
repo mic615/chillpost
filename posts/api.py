@@ -9,8 +9,5 @@ class PostViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = PostSerializer
 
-    def get_queryset(self):
-        return self.request.user.posts.all()
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
