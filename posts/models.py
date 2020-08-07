@@ -5,4 +5,5 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     owner = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
     body = models.TextField()
+    liked = models.ManyToManyField(User, blank=True, related_name="liked_posts")
     created_at = models.DateTimeField(auto_now_add=True)

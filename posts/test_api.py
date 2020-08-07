@@ -24,7 +24,7 @@ class  APITestCase(TestCase):
         self.invalid_post_payload = {
             'body': 'test'
         }
-        self.posts =  baker.make("posts.Post", _quantity=2)
+        self.posts = baker.make("posts.Post", _quantity=2)
 
     def test_api_user_create_valid_post(self):
         self.client.force_login(user=self.user)
