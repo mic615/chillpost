@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "96f028581e4a30ea8e0a981801dbbf67533f25cc4abcd0762198e237100c6e0c"
+            "sha256": "37d01ab1001a80557e341bb8434bdbe8dae260c85eb2b0ba985d1b56533f83cd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -22,6 +22,14 @@
                 "sha256:9fc6fb5d39b8af147ba40765234fa822b39818b12cc80b35ad9b0cef3a476aed"
             ],
             "version": "==3.2.10"
+        },
+        "baker": {
+            "hashes": [
+                "sha256:190809fe94ad0fbcfb385e76e5b8016d06359523dc582c8c40c8be5e0bcace45",
+                "sha256:2d81e99af7d7d6441297a0c13de023fe3f1510718e89d2baacea917ee09d154d"
+            ],
+            "index": "pypi",
+            "version": "==1.3"
         },
         "coverage": {
             "hashes": [
@@ -86,6 +94,14 @@
             ],
             "index": "pypi",
             "version": "==3.11.1"
+        },
+        "model-bakery": {
+            "hashes": [
+                "sha256:320d9e78fad1605a08bfb93affae42ba027300e2e973a235e12b102f78e97f7d",
+                "sha256:e2f0522a4b7d3cc1b6f88e95ac87cefd9317516274bb126f54488f47fe3aaafd"
+            ],
+            "index": "pypi",
+            "version": "==1.1.1"
         },
         "pytz": {
             "hashes": [

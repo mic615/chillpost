@@ -1,9 +1,12 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from .models import Post
 import json
 from rest_framework import status
 from django.urls import reverse
 from rest_framework.test import APIClient
+from model_bakery import baker
+
 
 
 # initialize the APIClient app
@@ -21,6 +24,7 @@ class  APITestCase(TestCase):
         self.invalid_post_payload = {
             'body': 'test'
         }
+        self.posts = baker.make("posts.Post", _quantity=2)
 
     def test_api_user_create_valid_post(self):
         self.client.force_login(user=self.user)
@@ -39,3 +43,13 @@ class  APITestCase(TestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_api_get_all_posts(self):
+        self.client.force_login(user=self.user)
+        count = Post.objects.count()
+        response = self.client.get(
+            reverse('post-list'),
+            content_type='application/json'
+        )
+        self.assertEqual(len(response.data), count)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
